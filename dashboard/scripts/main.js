@@ -67,6 +67,7 @@ let renderRowTableFileInfo = (parent, dict) => {                      //
     var image_dimensions = dict.info.image_dimensions;
     var image_type = dict.info.image_type;
     var file_mtime = dict.info.file_mtime;
+    
 
     parent.prepend(` 
         <tr id='${fullNameToId(img)}'>
@@ -257,12 +258,16 @@ const  callbackClickControlButton = (event) => {
 
 const addImginfoToTable = (dict) => {
     var block = $("#tbody_info_files");
+    console.log(dict);
+    renderImgByBase64(dict);
     renderRowTableFileInfo(block, dict);
+
     AddActionOnBtnControll();
 }
 
 
 const AddActionOnBtnControll = () => {
+    
     let aButtons = $(".control_button");
     aButtons.off();
     aButtons.click(callbackClickControlButton);
@@ -296,7 +301,7 @@ const replaceSpace = (str) => {
 
 
 const renderMetadataAllFiles = (data) => {
-
+    $(".control_button").remove();
     let outputHtm = "";
     var parent = $("#tbody_info_files");
     parent.empty();
@@ -310,8 +315,6 @@ const renderMetadataAllFiles = (data) => {
     data = null;
     parent = null;
     AddActionOnBtnControll();
-
-    
 
 };
 // "free_space_odroid" : {
