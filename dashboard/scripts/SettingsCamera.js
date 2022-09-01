@@ -1,5 +1,7 @@
 export class SettingsCamera {
     
+    importantSettings = ["iso", "shutterspeed", "exposurecompensation", "f-number", "shutterspeed"]
+
     bind = {};
     actualSettings = {};
 

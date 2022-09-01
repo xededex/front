@@ -94,80 +94,54 @@ let addModalForBtn = (idBtn = "#settings_page", divModal = "#settings-path") => 
 
 
 
-const renderImgByBase64 = (str) => {                              
-    ////console.log(str);                                          
-    $("img_panzoom").off()
-    let image_preview = new Image();
-    image_preview.src = `data:image/png;base64,${str.base64_photo}`;
+const renderImgByBase64 = (str) => {                                                                       
+    // $("img_panzoom").off()
+  
 
-    image_preview.width = 200;
-    image_preview.height = 200;
+    // let imageFull = new Image();
+    // let imagePreview = new Image();
 
-    let imageFull = new Image();
-    imageFull.id = "img_panzoom"
-    imageFull.src = `data:image/png;base64,${str.base64_photo}`;
+    // imageFull.id = "img_panzoom"
+    // imageFull.src = `data:image/png;base64,${str.base64_file}`;
+    // imagePreview.src = `data:image/png;base64,${str.base64_prev}`
 
-    imageFull.width = str.width;
-    imageFull.height = str.height;
-    // document.body.appendChild(image);
-    // let elem = document.getElementById('wrapper_img_from_camera');
-    // $("#wrapper_img_from_camera").empty();
-    // $("#wrapper_img_from_camera").append(image);
-    $("#full_img_container").empty();
-    $("#full_img_container").prepend(imageFull);
-    $("#prew_img").empty();
-    $("#prew_img").append(image_preview);
-    imageFull = null
-    image_preview = null
-
-    // $('#myModal').on('shown.bs.modal', function () {
-    //     $('#myInput').trigger('focus')
-    //   })
-
-
-    let elem = document.getElementById('img_panzoom');
-
-    addActionZoomBtn(elem);
+    // imageFull.width = str.width;
+    // imageFull.height = str.height;
+  
     
-    //panzoom.pan(10, 10)
-    //panzoom.zoom(2, { animate: true })
-
-    // const parent = elem.parentElement
-    // // No function bind needed
-    // parent.addEventListener('wheel', panzoom.zoomWithWheel)
-
-    // // This demo binds to shift + wheel
-    // parent.addEventListener('wheel', function(event) {
-    // if (!event.shiftKey) return
-    //     panzoom.zoomWithWheel(event)
-    // })
+    // $("#full_img_container").empty();
+    // $("#full_img_container").prepend(imageFull);
+ 
+    // $("#prew_img").empty();
+    // $("#prew_img").append(imagePreview);
+    // imageFull = null;
+   
 
 
+    // let elem = document.getElementById('img_panzoom');
+    // alert("");
+    // addActionZoomBtn(elem);
 
-    // Instantiate EasyZoom instances
-    // var $easyzoom = $('.easyzoom').easyZoom();
+    //$("#full_img_container").empty();
+    //$("#prew_img_img").attr("src",`data:image/png;base64,${str.base64_prev}.jpg`);
+    $("#prew_img").html(`<img src="data:image/png;base64,${str.base64_prev}">`);
+    $("#img_panzoom").attr("src",`data:image/png;base64,${str.base64_file}`);
+    // $("#full_img_container").html(`<img id="img_panzoom" src="data:image/png;base64,${str.base64_file}"> </img>`);
+    // $("#prew_img").html(`<img src="data:image/png;base64,${str.base64_prev}"> </img>`);
 
-    // // Get an instance API
-    // var api = $easyzoom.data('easyZoom');
+ 
+    // $("#prew_img").empty();
+    // $("#prew_img").append(imagePreview);
 
-
-
-
-
-    // const myPanzoom = new Panzoom(document.querySelector("#wrapper_img_from_camera"), {
-    //     "click" : true,
-    // });
-    //myPanzoom.toggleZoom();
-    // //console.log(str);
-    // elem.append(image);
+    
 
 };
 
 const addActionZoomBtn = (elem) => {
-    $("zoom_in_btn").off();                     //Удаляем старые события
-    $("zoom_out_btn").off();
-    $("reset_btn").off();
-    $("range_input").off(); 
+    $("#zoom_in_btn").off();                     //Удаляем старые события
+    $("#zoom_out_btn").off();
+    $("#reset_btn").off();
+    $("#range_input").off(); 
     //const panzoom = Panzoom(elem,  { contain: 'outside' });
     let panzoom = Panzoom(elem,  { contain: 'outside', startScale: -0.125 });
     
@@ -182,7 +156,7 @@ const addActionZoomBtn = (elem) => {
     zoomOutButton.addEventListener('click', panzoom.zoomOut);
     resetButton.addEventListener('click', panzoom.reset);
     rangeInput.addEventListener('input', (event) => {
-        panzoom.zoom(event.target.valueAsNumber)
+        panzoom.zoom(event.target.valueAsNumber);
     });
 
 
@@ -415,6 +389,9 @@ function main() {
 
 
     $(document).ready(function () {
+        addActionZoomBtn(document.getElementById('img_panzoom'));
+
+
         $("#get_settings_camera").click(() => {
             //console.log("cache " + $.cache)
             //console.log($.cache)
